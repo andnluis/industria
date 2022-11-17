@@ -62,7 +62,7 @@ export class TiendasComponent implements OnInit {
         this.listaEmpresas = temporal
 
         if(this.listaEmpresas.length==0){
-          this.toastr.info('Algunas empresas puede ser que aun no tengan productos a la venta si es su caso regresar despues ')
+          this.toastr.info('Parece que ninguna tienda tiene productos disponibles, lo sentimos :(')
         }
         
         console.log(this.listaEmpresas)
