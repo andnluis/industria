@@ -43,7 +43,7 @@ export class Top10VendidosComponent implements OnInit {
             cantidad: contProductos
           }
           this.paraSort.push(agregar)
-          this.paraSort.sort((a,b)=>b.cantidad-a.cantidad)
+          this.paraSort.sort((a, b) => b.cantidad - a.cantidad)
         });
 
         this.paraSort.splice(10)
@@ -52,10 +52,15 @@ export class Top10VendidosComponent implements OnInit {
           this.productosChart.push(element.nombre)
           this.contProductos.push(element.cantidad)
         });
+
+        for (let i = 0; i < this.productosChart.length; i++) {
+          this.getRandomColor()
+        }
+
         this.createChart()
       })
     })
-    
+
   }
 
   myChart: any
@@ -69,7 +74,7 @@ export class Top10VendidosComponent implements OnInit {
           {
             label: "Mas vendidos",
             data: this.contProductos,
-            backgroundColor: ['yellow','blue','red','green']
+            backgroundColor: this.colores
           },
         ]
       },
@@ -81,4 +86,23 @@ export class Top10VendidosComponent implements OnInit {
     this.myChart = chart;
   }
 
+  colores: string[] = [];
+
+  getRandomColor() {
+    var num = (Math.floor(Math.random() * 4) * 4).toString(16);
+    var letters = ['0', 'F', num];
+    var color = '#';
+
+    for (var i = 0; i < 3; i++) {
+      let pos = Math.floor(Math.random() * letters.length);
+      color += letters[pos];
+      letters.splice(pos, 1);
+    }
+
+    //para evitar que se repitan colores 
+    if (this.colores.includes(color))
+      this.getRandomColor();
+    else
+      this.colores.push(color)
+  }
 }
