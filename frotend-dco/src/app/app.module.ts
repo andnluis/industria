@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
@@ -65,6 +65,7 @@ import { Top10VendidosComponent } from './components/empresa/estadisticas/top10-
 import { PrincipalEstComponent } from './components/empresa/estadisticas/principal/principal.component';
 
 import { NgChartsModule } from 'ng2-charts';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -126,7 +127,13 @@ import { NgChartsModule } from 'ng2-charts';
     ToastrModule.forRoot(),
     HttpClientModule,
     FormsModule,
-    NgChartsModule
+    NgChartsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
