@@ -66,8 +66,8 @@ export class empresaService {
     bloquearEmpresa(id: Object): Observable<any>{
         return this.http.put(this.url+'/bloquearEmpresa',id);
     }
-    delEmpresa (idEmpresa: string): Observable<any>{
-        return this.http.delete(this.url+`/eliminarEmpresa/${idEmpresa}`)
+    delEmpresa (idEmpresa: string,idAdmin: string): Observable<any>{
+        return this.http.delete(this.url+`/eliminarEmpresa/${idEmpresa}/${idAdmin}`)
     }
     desbloquearEmpresa(idEmpresa: Object):Observable<any>{        
         return this.http.put(this.url+'/desbloquearEmpresa',idEmpresa)

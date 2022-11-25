@@ -10,7 +10,7 @@ router.post('/login/',empresaController.login)
 router.get('/listaEmpresas',empresaController.listar)
 router.get('/empresa/:id',empresaController.obtenerEmpresa)
 router.put('/bloquearEmpresa',empresaController.bloquearEmpresa)
-router.delete('/eliminarEmpresa/:id',empresaController.eliminarEmpresa)
+router.delete('/eliminarEmpresa/:id/:idAdmin',empresaController.eliminarEmpresa)
 //router.delete('/registro/:id',empresaController.borrar)
 //router.put('/registro/',empresaController.actualizar)
 

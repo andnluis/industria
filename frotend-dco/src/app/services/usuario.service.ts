@@ -27,8 +27,8 @@ export class UsuarioService {
     return this.http.post(this.url+"/login/",infornacionLogin)
   }
 
-  actualizarUsuario(informacion: object): Observable<any>{
-    return this.http.put(this.url+"/actualizar/",informacion)
+  actualizarUsuario(informacion: object, idAdmin:string): Observable<any>{
+    return this.http.put(this.url+"/actualizar/"+idAdmin,informacion)
   }
 
 

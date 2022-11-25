@@ -6,7 +6,7 @@ const usuarioController = require('../controllers/usuarioController')
 //api/usuarios
 router.post('/',usuarioController.crearUsuario);
 router.get('/',usuarioController.obtenerUsuarios);
-router.put('/actualizar/',usuarioController.actualizarUsuario);
+router.put('/actualizar/:idAdmin',usuarioController.actualizarUsuario);
 router.get('/:id',usuarioController.obtenerUsuario);
 router.delete('/:id',usuarioController.eliminarUsuario);
 router.post('/login/',usuarioController.loginUsuario);

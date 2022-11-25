@@ -61,7 +61,7 @@ export class AdminDetallesEmpresaComponent implements OnInit {
 
   bloquearEmpresa() {
     if (this.datosEmpresa.activo!) {
-      this.empresaService.bloquearEmpresa({ 'id': this.idEmpresa }).subscribe(data => {
+      this.empresaService.bloquearEmpresa({ 'id': this.idEmpresa,'idAdmin':window.localStorage.getItem('usuarioAdmin')}).subscribe(data => {
         if (data.acceso) {
           console.log(data.mensaje);
           this.toastr.success('Empresa bloqueada exitosamente');
@@ -77,7 +77,7 @@ export class AdminDetallesEmpresaComponent implements OnInit {
   }
   desbloquearEmpresa(){
     if (!this.activo) {
-      this.empresaService.desbloquearEmpresa({ 'id': this.idEmpresa }).subscribe(data => {
+      this.empresaService.desbloquearEmpresa({ 'id': this.idEmpresa, 'idAdmin':window.localStorage.getItem('usuarioAdmin')}).subscribe(data => {
         if (data.acceso) {
           console.log(data.mensaje);
           this.toastr.success('Empresa desbloqueada exitosamente');
@@ -93,7 +93,12 @@ export class AdminDetallesEmpresaComponent implements OnInit {
   }
 
   eliminarEmpresa() {
-    this.empresaService.delEmpresa(this.idEmpresa).subscribe(data => {
+    let ids={
+      idEmpresa: this.idEmpresa,
+      idAdmin: window.localStorage.getItem('usuarioAdmin')
+    }
+    console.log(ids)
+    this.empresaService.delEmpresa(ids.idEmpresa, ids.idAdmin!).subscribe(data => {
       if (data.acceso) {
         console.log(data.mensaje);
         this.toastr.success('Empresa eliminada exitosamente');

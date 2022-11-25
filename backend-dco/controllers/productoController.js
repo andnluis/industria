@@ -1,6 +1,15 @@
 const Producto = require("../models/Producto")
 const Empresa = require("../models/empresaModel")
+const Bitacora= require('../models/bitacoraModel')
 
+
+var log={
+    archivoViejo: null,
+    archivoNuevo: '',
+    descripcion: '',
+    fecha:'',
+    admin: null
+}
 
 
 exports.subirProducto = async (req, res) => {
@@ -12,10 +21,21 @@ exports.subirProducto = async (req, res) => {
         //console.log("producto: ", producto)
         let productos
         let empresa = await Empresa.find({ '_id': idEmpresa }, { "productos": 1 })
+
+        //bitacora
+        log.archivoViejo=JSON.stringify(empresa)
+        log.descripcion="subida de un nuevo producto por parte de la empresa con id: "+idEmpresa
+        log.fecha=Date.now()
+
         productos = empresa[0].productos
         productos.push(producto._id)
         
         empresa = await Empresa.findByIdAndUpdate({ _id: idEmpresa }, { 'productos': productos }, { new: true })
+        
+        log.archivoNuevo=producto
+        let bitacora=new Bitacora(log)
+        bitacora.save()
+
         console.log(empresa)
 
         await producto.save();

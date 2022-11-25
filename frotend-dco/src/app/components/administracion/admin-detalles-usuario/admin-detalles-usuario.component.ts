@@ -70,7 +70,7 @@ export class AdminDetallesUsuarioComponent implements OnInit {
       contrasenia: this.datosUsuarioNuevo.value.contrasenia
     }
 
-    this.usuarioService.actualizarUsuario(usuario).subscribe(data=>{
+    this.usuarioService.actualizarUsuario(usuario, window.localStorage.getItem('usuarioAdmin')!).subscribe(data=>{
       if(data.acceso){
         this.toastr.success(data.mensaje);
         this.getUsuario();
