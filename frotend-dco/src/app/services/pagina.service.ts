@@ -7,7 +7,7 @@ import { Pagina } from '../models/pagina';
   providedIn: 'root'
 })
 export class PaginaService {
-  url = 'http://localhost:4000/api/paginas'
+  url = 'http://localhost/back/api/paginas'
 
   constructor(private http:HttpClient) { }
 

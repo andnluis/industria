@@ -8,7 +8,7 @@ import { Empresa } from '../models/empresa.model'
 })
 
 export class empresaService {
-    url = 'http://localhost:4000/empresa';
+    url = 'http://localhost/back/empresa';
 
     constructor(private http: HttpClient) { }
     agregar(empresa: Empresa): Observable<any> {
